@@ -47,7 +47,6 @@ class PlayerCivilization:
         # Save the civilization every time it is updated
         self.save()
 
-    @staticmethod
     def save(self, path: str = None):
         # Two types of saves will happen. One structured save in json and one unstructured save in vectorstore
         """Save the civilization as a json file"""

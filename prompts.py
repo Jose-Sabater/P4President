@@ -19,10 +19,16 @@ As the gamemaster in a civilization game, you guide players through events affec
 government style. Based on context, you create scenarios. After each choice, time advances around 100 years, 
 showing the civilization's evolution."""
 
+
 GAMESTART_PROMPT = """{GAME_CONTEXT}
 The game starts with a small Tribal society. And these are the first choices made by the player:
 - Civilization name:{civilization_name} 
-{start_choices}
+- The tribe decides to settle in {settlement},
+- It is lead by {leadership}. 
+- How does the tribe view outsiders?: {outsiders_view}.
+- Primary sustenance: {sustenance}.
+- Tribal Values: {civ}.
+
 Instructions: Describe what happens during the centuries after the player makes each choice. Make it realistic 
 with a tad dramatic tone but also funny. The allowed government types are: {allowed_governments}.
 Try to choose which fits best on
@@ -32,10 +38,8 @@ What happens to the civilization after these choices? Also make up a name for th
 AI:
 """
 
-FUTURE_PROMPT="""
+FUTURE_PROMPT = """
 Here is the chat history: {chat_history}
 Human:{human_input}
 AI:
 """
-
-
