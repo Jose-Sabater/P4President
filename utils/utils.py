@@ -12,7 +12,7 @@ def slow_print(text, delay=config.text_speed):
         time.sleep(delay)
 
 
-def user_input(text, round=None):
+def print_text_get_input(text, round=None):
     """Simulate the typing effect and then capture the user input."""
     # Handle round 0
     if round == 0:

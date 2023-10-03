@@ -1,14 +1,14 @@
-import langchain
 from langchain.llms import OpenAI
-from prompts import GAMESTART_PROMPT, GAME_CONTEXT
-import json
+from langchain.chat_models import ChatOpenAI
+
 from logic import Game
 from config import secrets
-import logging
+import chromadb
 
-llm = OpenAI(openai_api_key=secrets["OPENAI_API_KEY"])
-
-game = Game(llm=llm)
+# llm = OpenAI(openai_api_key=secrets["OPENAI_API_KEY"], model="gpt-3.5-turbo")
+chat_model = ChatOpenAI(openai_api_key=secrets["OPENAI_API_KEY"], model="gpt-3.5-turbo")
+persistent_client = chromadb.PersistentClient(path="./data/vectorstore.db")
+game = Game(llm=chat_model)
 
 
 def main():
