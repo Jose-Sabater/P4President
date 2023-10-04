@@ -145,6 +145,7 @@ class Game:
         print("Printing Current state of the civilization: ", llm_response_checkpoint)
         civilization_info = json.loads(llm_response_checkpoint)
         self.player_civ.update(**civilization_info)
+        self.player_civ.save(self.player_civ.civ_name)
 
 
 # chat_history = [AI_response + human_response]
