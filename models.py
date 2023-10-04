@@ -66,6 +66,3 @@ class PlayerCivilization:
         Interaction with outsiders: {self.outsiders_view},
         Main sustenance: {self.sustenance},
         Civilization values: {self.civ_values}"""
-
-
-# First round of the game
