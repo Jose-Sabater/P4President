@@ -6,7 +6,7 @@ from prompts import PromptTemplate
 from models import PlayerCivilization, GameSettings
 import chromadb
 from config import secrets, allowed_governments
-
+import json
 
 round = 0
 persistent_client = chromadb.PersistentClient(path="./data/vectorstore.db")
@@ -63,8 +63,7 @@ class Game:
 
         # Update the player civilization
         self.player_civ.update(**choices)
-        PlayerCivilization.save(self.player_civ)
-        # define the game context based on first choices
+        self.player_civ.save(self.player_civ.civ_name)
         self.round += 1
 
     # Start LLm logic
@@ -87,6 +86,7 @@ class Game:
         player_response = print_text_get_input(llm_response)
         # Save the chat history
         self.chat_history += f"AI: {llm_response}\nHuman: {player_response}\n\n"
+        self.player_civ.update(story=self.chat_history)
 
         # store the chat history
 
@@ -102,6 +102,49 @@ class Game:
         player_response = print_text_get_input(llm_response)
         # Save the chat history
         self.chat_history += f"AI: {llm_response}\nHuman: {player_response}\n\n"
+        self.player_civ.update(story=self.chat_history)
+
+    def round_3(self):
+        """Third round of the game, rumors of a religious movement"""
+        third_prompt = PromptTemplate(
+            prompt_prefix=prompts.GAME_CONTEXT,
+            template=f"""chat history: {self.chat_history}""",
+            prompt_suffix=prompts.INSTRUCTIONS_3.format(
+                allowed_governments=", ".join(allowed_governments)
+            ),
+        ).generate_prompt()
+
+        llm_response = self.llm.predict(third_prompt, max_tokens=300)
+        player_response = print_text_get_input(llm_response)
+        # Save the chat history
+        self.chat_history += f"AI: {llm_response}\nHuman: {player_response}\n\n"
+        self.player_civ.update(story=self.chat_history)
+
+    def round_4(self):
+        """Fourth round of the game, recap of the story so far"""
+        fourth_prompt = PromptTemplate(
+            prompt_prefix=prompts.GAME_CONTEXT,
+            template=f"""chat history: {self.chat_history}""",
+            prompt_suffix=prompts.INSTRUCTIONS_4,
+        ).generate_prompt()
+
+        llm_response = self.llm.predict(fourth_prompt, max_tokens=300)
+        player_response = print_text_get_input(llm_response)
+        # Save the chat history
+        self.chat_history += f"AI: {llm_response}\nHuman: {player_response}\n\n"
+        self.player_civ.update(story=self.chat_history)
+
+        # checkpoint
+        checkpoint_prompt = PromptTemplate(
+            prompt_prefix=prompts.GAME_CONTEXT_SHORT,
+            template=f"""chat history: {self.chat_history}""",
+            prompt_suffix=prompts.INSTRUCTIONS_4_2,
+        ).generate_prompt()
+
+        llm_response_checkpoint = self.llm.predict(checkpoint_prompt, max_tokens=150)
+        print("Printing Current state of the civilization: ", llm_response_checkpoint)
+        civilization_info = json.loads(llm_response_checkpoint)
+        self.player_civ.update(**civilization_info)
 
 
 # chat_history = [AI_response + human_response]

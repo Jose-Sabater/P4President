@@ -45,6 +45,32 @@ the player have to take a drastic decision. End it with a question for the playe
 </Instructions>
 AI:"""
 
+INSTRUCTIONS_3 = """<Instructions>: What happens during the next centuries? Things to introduce:
+- What is the size of the civilization now?
+- What is the government style? Allowed government types are: {allowed_governments}
+Hint also some rumors about the start of some r
+eligious cults or movements, something that will be important in the
+future, make it subtle. Ask the player some questions that will shape the government style.
+Maximum 300 words
+"""
+INSTRUCTIONS_4 = """<Instructions>: What happens during the next centuries? Things to introduce
+- There was a hint of a religious movement in the previous message, increase the importance of this movement but still
+dont make it a major thing.
+- Many centuries have pasted since the inception of the civilization, give some story about where they are now, 
+their forms of sustenance, dealings with outsiders, leadership (that has evolved since the start) and so on. That 
+build background to the story.
+End it with a question for the player.
+Maximum 300 words"""
+
+INSTRUCTIONS_4_2 = """Based on the chat history answer the following in json format. Reply only json:
+{"Size": "the current size of the civilization",
+"Government": "The current type of government based on allowed governments:[{allowed_governments}]",
+"Leadership": "The current leadership of the civilization",
+"Settlement": "The current settlement of the civilization, where and how are they living?",
+"Outsiders": "The politics of the civilization towards outsiders",
+"Main_ocupation": "The main occupation of the civilization, it can be traders, farmers, etc"}
+"""
+
 FUTURE_PROMPT = """
 The allowed government types are: {allowed_governments}.
 Try to choose which fits best on each step.

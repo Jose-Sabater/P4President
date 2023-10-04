@@ -26,6 +26,7 @@ class PlayerCivilization:
         outsiders_view: str = None,
         sustenance: str = None,
         civ_values: str = None,
+        story: str = "",
     ) -> None:
         self.civ_name = civilization_name
         self.settlement = settlement
@@ -33,6 +34,7 @@ class PlayerCivilization:
         self.outsiders_view = outsiders_view
         self.sustenance = sustenance
         self.civ_values = civ_values
+        self.story = story
 
     def update(self, **kwargs):
         """Update the civilization with the new values"""
