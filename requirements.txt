@@ -1,0 +1,5 @@
+langchain==0.0.310
+openai==0.28.1
+chromadb
+python-dotenv
+
