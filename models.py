@@ -1,8 +1,9 @@
-""" Capture the steps that the game follows and save them"""
+""" Capture the decisions for each civilization"""
 
 import json
 from typing import Optional
 import logging
+import os
 
 
 # 2 Saves, 1 as a vectorstore and 1 as a json file
@@ -52,7 +53,11 @@ class PlayerCivilization:
     def save(self, path: str = None):
         # Two types of saves will happen. One structured save in json and one unstructured save in vectorstore
         """Save the civilization as a json file"""
+
         if path is None:
+            # check if data folder exists
+            if not os.path.exists("./data"):
+                os.makedirs("./data")
             path = f"./data/{self.civ_name}.json"
 
         with open(path, "w") as f:

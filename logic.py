@@ -12,12 +12,6 @@ round = 0
 persistent_client = chromadb.PersistentClient(path="./data/vectorstore.db")
 
 
-# add an id and metadata = chathistory, round=round_nr
-# collection.add
-# # with ids starting in 100 for chat history
-# collection.get
-
-
 class Game:
     """Capture the steps that the game follows"""
 
@@ -145,7 +139,7 @@ class Game:
         print("Printing Current state of the civilization: ", llm_response_checkpoint)
         civilization_info = json.loads(llm_response_checkpoint)
         self.player_civ.update(**civilization_info)
-        self.player_civ.save(self.player_civ.civ_name)
+        self.player_civ.save()
 
 
 # chat_history = [AI_response + human_response]
