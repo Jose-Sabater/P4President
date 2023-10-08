@@ -10,7 +10,7 @@ Also using ChromaDB as vectorstore.
 
 ## Usage
 python app.py  
-or build a dockerimage
+or build a dockerimage (in container branch)
 
 
 ## Idea
