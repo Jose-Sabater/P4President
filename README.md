@@ -1,5 +1,5 @@
 # P4President
-
+![](./assets/p4president.jpeg)
 ## Description
 This will be a demo of a game where your decisions will shape the politics of your country.
 You get to play prime minister, president, king or whatever form of government you like.  
@@ -7,6 +7,11 @@ The input is open ended , so feel free to write whatever comes to your mind.
 
 Built using Large Language models and chaining between messages. GPT and langchain.  
 Also using ChromaDB as vectorstore. 
+
+## Usage
+python app.py  
+or build a dockerimage
+
 
 ## Idea
 The game will start with an introduction to society and background. And the player will need to answer some questions, these will determine the first steps of his civilization.
