@@ -6,7 +6,7 @@ You get to play prime minister, president, king or whatever form of government y
 The input is open ended , so feel free to write whatever comes to your mind.
 
 Built using Large Language models and chaining between messages. GPT and langchain.  
-Also using ChromaDB as vectorstore. 
+Also using ChromaDB as vectorstore(in current version just as a placeholder). 
 
 ## Usage
 python app.py  
@@ -34,7 +34,7 @@ At the end of the game you will get your story back, combined with some historic
 - [x] Allow government selections
 - [ ] Allow number of rounds selection
 - [ ] Create historical facts. That compares the current story with real civilizations
-- [ ] Add text2voice
+- [x] Add text2voice (utils has v0)
 - [ ] Add voice2text
 - [ ] Add prophanity filters and others
 - [ ] Summary at the end with links to historical similarities and teachings
